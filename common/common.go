@@ -101,6 +101,19 @@ func (p Pos) Scale(s int) Pos {
 	return Pos{Y: p.Y * s, X: p.X * s}
 }
 
+type PosDelta Pos
+
+var (
+	DN = Pos{Y: -1, X: 0}
+	DU = DN
+	DE = Pos{Y: 0, X: 1}
+	DR = DE
+	DS = Pos{Y: 1, X: 0}
+	DD = DS
+	DW = Pos{Y: 0, X: -1}
+	DL = DW
+)
+
 func (p Pos) String() string {
 	return fmt.Sprintf("{%d,%d}", p.X, p.Y)
 }
