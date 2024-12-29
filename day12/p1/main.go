@@ -52,27 +52,21 @@ func (c *Computer) setRegVal(r string, v int) {
 
 func (c *Computer) Run() Registers {
 	for c.ptr < len(c.program) {
-		tokens := strings.Split(strings.TrimSpace(c.program[c.ptr]), " ")
-		for i := range tokens {
-			tokens[i] = strings.TrimSpace(tokens[i])
-		}
+		tokens := strings.Fields(c.program[c.ptr])
+
+		c.ptr++
 
 		switch tokens[0] {
 		case "cpy":
 			c.setRegVal(tokens[2], c.getVal(tokens[1]))
-			c.ptr++
 		case "inc":
 			c.setRegVal(tokens[1], c.getRegVal(tokens[1])+1)
-			c.ptr++
 		case "dec":
 			c.setRegVal(tokens[1], c.getRegVal(tokens[1])-1)
-			c.ptr++
 		case "jnz":
 			val := c.getVal(tokens[1])
 			if val != 0 {
-				c.ptr += c.getVal(tokens[2])
-			} else {
-				c.ptr++
+				c.ptr += c.getVal(tokens[2]) - 1
 			}
 		}
 
