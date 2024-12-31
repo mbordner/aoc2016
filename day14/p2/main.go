@@ -47,6 +47,17 @@ func (ksm KeySearchMap) Add(b byte, k KeyCandidate) {
 	}
 }
 
+func getHash(salt string, index int) string {
+	data := []byte(fmt.Sprintf("%s%d", salt, index))
+	hash := md5.Sum(data)
+	hashString := hex.EncodeToString(hash[:])
+	for i := 0; i < 2016; i++ {
+		hash = md5.Sum([]byte(hashString))
+		hashString = hex.EncodeToString(hash[:])
+	}
+	return hashString
+}
+
 func main() {
 
 	ksm := make(KeySearchMap)
@@ -56,9 +67,7 @@ func main() {
 	j := math.MaxInt64
 	for i < j {
 
-		data := []byte(fmt.Sprintf("%s%d", `cuanljph`, i))
-		hash := md5.Sum(data)
-		hashString := hex.EncodeToString(hash[:])
+		hashString := getHash(`cuanljph`, i)
 
 		repeatingBytes := getRepeatingByteStats(hashString, 3)
 
