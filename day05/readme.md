@@ -36,4 +36,8 @@ Given the actual Door ID and this new method, what is the password? Be extra pro
 Your puzzle answer was 999828ec.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
+
+At this point, you should return to your Advent calendar and try another puzzle.
+
+Your puzzle input was cxdnnyjw.
 ```

@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(string(fillDisk(272, []byte(`10001001100000001`))))
 }
 
 func fillDisk(l int, state []byte) []byte {

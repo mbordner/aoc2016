@@ -48,4 +48,8 @@ Given the actual salt in your puzzle input and using 2016 extra MD5 calls of key
 Your puzzle answer was 20606.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
+
+At this point, you should return to your Advent calendar and try another puzzle.
+
+Your puzzle input was cuanljph.
 ```

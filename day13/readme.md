@@ -43,4 +43,8 @@ How many locations (distinct x,y coordinates, including your starting location) 
 Your puzzle answer was 135.
 
 Both parts of this puzzle are complete! They provide two gold stars: **
+
+At this point, you should return to your Advent calendar and try another puzzle.
+
+Your puzzle input was 1352.
 ```
