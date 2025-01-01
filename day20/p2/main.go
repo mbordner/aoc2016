@@ -22,7 +22,19 @@ func main() {
 		rs.Add(getIntVal(matches[1]), getIntVal(matches[2]))
 	}
 
-	fmt.Println(rs.ValuePairs()[1] + 1)
+	vps := rs.ValuePairs()
+
+	count := int64(0)
+	if vps[0] > 0 {
+		count = vps[0] - 1
+	}
+	for i := 2; i < len(vps); i += 2 {
+		count += vps[i] - vps[i-1] - 1
+	}
+
+	count += 4294967295 - vps[len(vps)-1]
+
+	fmt.Println(count)
 
 }
 
