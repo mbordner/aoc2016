@@ -7,6 +7,14 @@ import (
 	"testing"
 )
 
+func Test_ScrambleUnscramble(t *testing.T) {
+	password := "abcdefgh"
+	scrambled := scrambleInstructions(password, "../data.txt")
+	unscrambled := unscrambleInstructions(scrambled, "../data.txt")
+
+	assert.Equal(t, password, unscrambled)
+}
+
 func Test_ScrambleInstructions(t *testing.T) {
 	s := scrambleInstructions("abcde", "../test.txt")
 	assert.Equal(t, `decab`, s)
