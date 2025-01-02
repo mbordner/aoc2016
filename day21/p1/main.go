@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/mbordner/aoc2016/common/file"
 	"regexp"
 	"strconv"
@@ -16,8 +17,9 @@ var (
 	reRotateBasedOnLetterPosition = regexp.MustCompile(`rotate based on position of letter (\w)`)
 )
 
+// fdbgache is not right
 func main() {
-
+	fmt.Println(scrambleInstructions("abcdefgh", "../data.txt"))
 }
 
 func scrambleInstructions(password string, filename string) string {
@@ -47,6 +49,8 @@ func scrambleInstructions(password string, filename string) string {
 		} else if reRotateBasedOnLetterPosition.MatchString(line) {
 			matches := reRotateBasedOnLetterPosition.FindStringSubmatch(line)
 			s = rotateBasedOnLetterPosition(s, matches[1])
+		} else {
+			fmt.Println("didn't match:", line)
 		}
 	}
 	return s
@@ -55,7 +59,7 @@ func scrambleInstructions(password string, filename string) string {
 func rotateBasedOnLetterPosition(s, b string) string {
 	index := strings.Index(s, b)
 	n := index + 1
-	if n >= 4 {
+	if index >= 4 {
 		n++
 	}
 	return rotateRightSteps(s, n)

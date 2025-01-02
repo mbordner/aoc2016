@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"strings"
 	"testing"
 )
 
@@ -64,6 +65,12 @@ func Test_ReverseThroughPositions(t *testing.T) {
 		rs string
 	}{
 		{
+			is: "abcd",
+			ii: 0,
+			ij: 3,
+			rs: "dcba",
+		},
+		{
 			is: "abcdefg",
 			ii: 1,
 			ij: 3,
@@ -80,6 +87,12 @@ func Test_ReverseThroughPositions(t *testing.T) {
 			ii: 0,
 			ij: 6,
 			rs: "gfedcba",
+		},
+		{
+			is: "abcdefg",
+			ii: 3,
+			ij: 6,
+			rs: "abcgfed",
 		},
 	}
 
@@ -104,11 +117,19 @@ func Test_MovePositions(t *testing.T) {
 			ij: 3,
 			rs: "acdbefg",
 		},
+		{
+			is: "abc",
+			ii: 1,
+			ij: 2,
+			rs: "acb",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%s,%d,%d", tt.is, tt.ii, tt.ij), func(t *testing.T) {
+			c := tt.is[1]
 			rs := movePositions(tt.is, tt.ii, tt.ij)
 			assert.Equal(t, tt.rs, rs)
+			assert.Equal(t, tt.ij, strings.Index(rs, string(c)))
 		})
 	}
 }
@@ -176,6 +197,18 @@ func Test_RotateSteps(t *testing.T) {
 			in:   1,
 			idir: "left",
 			rs:   "bca",
+		},
+		{
+			is:   "abcd",
+			in:   2,
+			idir: "left",
+			rs:   "cdab",
+		},
+		{
+			is:   "abcd",
+			in:   2,
+			idir: "right",
+			rs:   "cdab",
 		},
 	}
 	for _, tt := range tests {
