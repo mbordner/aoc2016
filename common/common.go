@@ -1,6 +1,8 @@
 package common
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"strconv"
 )
@@ -165,7 +167,7 @@ func ConvertGrid(lines []string) Grid {
 	return grid
 }
 
-type Queue[T comparable] []T
+type Queue[T any] []T
 
 func (q *Queue[T]) Enqueue(s T) {
 	*q = append(*q, s)
@@ -228,4 +230,9 @@ func StrToA(str string) int {
 func StrToA64(str string) int64 {
 	val, _ := strconv.ParseInt(str, 10, 64)
 	return val
+}
+
+func HashString(data []byte) string {
+	hash := md5.Sum(data)
+	return hex.EncodeToString(hash[:])
 }
